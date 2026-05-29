@@ -603,7 +603,7 @@ CREATE INDEX IF NOT EXISTS idx_shopping_log_shopping_type ON shopping_log(shoppi
 -- AUTO-CREATE PROFILE ON SIGNUP TRIGGER
 -- ============================================
 CREATE OR REPLACE FUNCTION public.handle_new_user()
-RETURNS trigger AS $$
+RETURNS trigger AS ₹₹
 BEGIN
   INSERT INTO public.profiles (id, display_name, email_verified)
   VALUES (
@@ -613,7 +613,7 @@ BEGIN
   );
   RETURN new;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+₹₹ LANGUAGE plpgsql SECURITY DEFINER;
 
 DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
 
@@ -625,7 +625,7 @@ CREATE TRIGGER on_auth_user_created
 -- AUTO-UPDATE email_verified ON EMAIL CONFIRM
 -- ============================================
 CREATE OR REPLACE FUNCTION public.handle_email_verified()
-RETURNS trigger AS $$
+RETURNS trigger AS ₹₹
 BEGIN
   IF new.email_confirmed_at IS NOT NULL AND old.email_confirmed_at IS NULL THEN
     UPDATE public.profiles
@@ -634,7 +634,7 @@ BEGIN
   END IF;
   RETURN new;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+₹₹ LANGUAGE plpgsql SECURITY DEFINER;
 
 DROP TRIGGER IF EXISTS on_auth_email_confirmed ON auth.users;
 
@@ -646,12 +646,12 @@ CREATE TRIGGER on_auth_email_confirmed
 -- AUTO-UPDATE updated_at TRIGGER FUNCTION
 -- ============================================
 CREATE OR REPLACE FUNCTION public.handle_updated_at()
-RETURNS trigger AS $$
+RETURNS trigger AS ₹₹
 BEGIN
   new.updated_at = now();
   RETURN new;
 END;
-$$ LANGUAGE plpgsql;
+₹₹ LANGUAGE plpgsql;
 
 CREATE TRIGGER set_updated_at_profiles
   BEFORE UPDATE ON profiles

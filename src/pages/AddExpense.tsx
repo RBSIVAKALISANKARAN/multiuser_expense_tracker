@@ -764,7 +764,7 @@ export function AddExpense() {
                       metadata: {},
                     });
                   }}
-                  className={`p-3 rounded-lg border-2 text-left transition-all ${
+                  className={`p-3 rounded-lg border-2 text-left transition-all ₹{
                     formData.category === cat.id
                       ? 'border-teal-500 bg-teal-50 dark:bg-teal-900/20'
                       : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
@@ -794,7 +794,7 @@ export function AddExpense() {
                 Amount
               </label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">₹</span>
                 <input
                   type="number"
                   step="0.01"

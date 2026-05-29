@@ -88,7 +88,7 @@ export function ExpensesList() {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `expenses_${new Date().toISOString().split('T')[0]}.csv`;
+    a.download = `expenses_₹{new Date().toISOString().split('T')[0]}.csv`;
     a.click();
   }
 
@@ -100,13 +100,13 @@ export function ExpensesList() {
         <div>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Expenses</h1>
           <p className="text-gray-600 dark:text-gray-400 mt-1">
-            {filteredExpenses.length} expenses • Total: ${totalAmount.toFixed(2)}
+            {filteredExpenses.length} expenses • Total: ₹{totalAmount.toFixed(2)}
           </p>
         </div>
         <div className="flex gap-2">
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ₹{
               showFilters
                 ? 'border-teal-500 bg-teal-50 dark:bg-teal-900/20 text-teal-600'
                 : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
@@ -251,7 +251,7 @@ export function ExpensesList() {
                       {expense.payment_mode}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900 dark:text-white text-right">
-                      ${Number(expense.amount).toFixed(2)}
+                      ₹{Number(expense.amount).toFixed(2)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                       <button

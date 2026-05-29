@@ -99,7 +99,7 @@ export function SavingsPage() {
         <div>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Savings Goals</h1>
           <p className="text-gray-600 dark:text-gray-400 mt-1">
-            ${totalSaved.toFixed(2)} saved of ${totalTarget.toFixed(2)} target
+            ₹{totalSaved.toFixed(2)} saved of ₹{totalTarget.toFixed(2)} target
           </p>
         </div>
         <button
@@ -156,7 +156,7 @@ export function SavingsPage() {
                   Target Amount
                 </label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">₹</span>
                   <input
                     type="number"
                     step="0.01"
@@ -174,7 +174,7 @@ export function SavingsPage() {
                   Current Amount
                 </label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">₹</span>
                   <input
                     type="number"
                     step="0.01"
@@ -253,7 +253,7 @@ export function SavingsPage() {
                       {goal.deadline && (
                         <p className="text-sm text-gray-500 dark:text-gray-400">
                           {daysLeft !== null && daysLeft > 0
-                            ? `${daysLeft} days left`
+                            ? `₹{daysLeft} days left`
                             : 'Deadline passed'}
                         </p>
                       )}
@@ -284,14 +284,14 @@ export function SavingsPage() {
                   </div>
                   <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
                     <div
-                      className={`h-3 rounded-full transition-all ${
+                      className={`h-3 rounded-full transition-all ₹{
                         progress >= 100
                           ? 'bg-green-500'
                           : progress >= 75
                           ? 'bg-teal-500'
                           : 'bg-gray-400'
                       }`}
-                      style={{ width: `${Math.min(progress, 100)}%` }}
+                      style={{ width: `₹{Math.min(progress, 100)}%` }}
                     />
                   </div>
                 </div>
@@ -300,13 +300,13 @@ export function SavingsPage() {
                   <div>
                     <p className="text-gray-500 dark:text-gray-400">Saved</p>
                     <p className="text-lg font-semibold text-gray-900 dark:text-white">
-                      ${Number(goal.current_amount).toFixed(2)}
+                      ₹{Number(goal.current_amount).toFixed(2)}
                     </p>
                   </div>
                   <div className="text-right">
                     <p className="text-gray-500 dark:text-gray-400">Target</p>
                     <p className="text-lg font-semibold text-gray-900 dark:text-white">
-                      ${Number(goal.target_amount).toFixed(2)}
+                      ₹{Number(goal.target_amount).toFixed(2)}
                     </p>
                   </div>
                 </div>

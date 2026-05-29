@@ -84,7 +84,7 @@ export function IncomePage() {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `income_${new Date().toISOString().split('T')[0]}.csv`;
+    a.download = `income_₹{new Date().toISOString().split('T')[0]}.csv`;
     a.click();
   }
 
@@ -96,7 +96,7 @@ export function IncomePage() {
         <div>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Income</h1>
           <p className="text-gray-600 dark:text-gray-400 mt-1">
-            {income.length} entries • Total: ${total.toFixed(2)}
+            {income.length} entries • Total: ₹{total.toFixed(2)}
           </p>
         </div>
         <div className="flex gap-2">
@@ -142,7 +142,7 @@ export function IncomePage() {
                   Amount
                 </label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">₹</span>
                   <input
                     type="number"
                     step="0.01"
@@ -265,7 +265,7 @@ export function IncomePage() {
                       {item.notes || '-'}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-green-600 dark:text-green-400 text-right">
-                      +${Number(item.amount).toFixed(2)}
+                      +₹{Number(item.amount).toFixed(2)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                       <button

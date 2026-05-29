@@ -169,7 +169,7 @@ export function Dashboard() {
             <span className="text-xs text-gray-500 dark:text-gray-400">This Month</span>
           </div>
           <p className="text-2xl font-bold text-gray-900 dark:text-white">
-            ${totalExpensesThisMonth.toFixed(2)}
+            ₹{totalExpensesThisMonth.toFixed(2)}
           </p>
           <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Total Expenses</p>
         </div>
@@ -182,7 +182,7 @@ export function Dashboard() {
             <span className="text-xs text-gray-500 dark:text-gray-400">This Month</span>
           </div>
           <p className="text-2xl font-bold text-gray-900 dark:text-white">
-            ${totalIncomeThisMonth.toFixed(2)}
+            ₹{totalIncomeThisMonth.toFixed(2)}
           </p>
           <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Total Income</p>
         </div>
@@ -190,7 +190,7 @@ export function Dashboard() {
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-5">
           <div className="flex items-center justify-between mb-3">
             <div
-              className={`p-2 rounded-lg ${
+              className={`p-2 rounded-lg ₹{
                 balance >= 0
                   ? 'bg-green-100 dark:bg-green-900/30'
                   : 'bg-red-100 dark:bg-red-900/30'
@@ -205,13 +205,13 @@ export function Dashboard() {
             <span className="text-xs text-gray-500 dark:text-gray-400">Net Balance</span>
           </div>
           <p
-            className={`text-2xl font-bold ${
+            className={`text-2xl font-bold ₹{
               balance >= 0
                 ? 'text-green-600 dark:text-green-400'
                 : 'text-red-600 dark:text-red-400'
             }`}
           >
-            ${Math.abs(balance).toFixed(2)}
+            ₹{Math.abs(balance).toFixed(2)}
           </p>
           <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
             {balance >= 0 ? 'Surplus' : 'Deficit'}
@@ -226,7 +226,7 @@ export function Dashboard() {
             <span className="text-xs text-gray-500 dark:text-gray-400">Total</span>
           </div>
           <p className="text-2xl font-bold text-gray-900 dark:text-white">
-            ${totalSavings.toFixed(2)}
+            ₹{totalSavings.toFixed(2)}
           </p>
           <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Savings</p>
         </div>
@@ -268,13 +268,13 @@ export function Dashboard() {
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                  label={({ name, percent }) => `${name} (${(percent * 100).toFixed(0)}%)`}
+                  label={({ name, percent }) => `₹{name} (₹{(percent * 100).toFixed(0)}%)`}
                   outerRadius={100}
                   fill="#8884d8"
                   dataKey="value"
                 >
                   {pieData.map((_entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    <Cell key={`cell-₹{index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
                 <Tooltip
@@ -311,7 +311,7 @@ export function Dashboard() {
                   >
                     <div className="flex items-center gap-3">
                       <div
-                        className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                        className={`w-10 h-10 rounded-full flex items-center justify-center ₹{
                           isExpense
                             ? 'bg-teal-100 dark:bg-teal-900/30'
                             : 'bg-green-100 dark:bg-green-900/30'
@@ -337,13 +337,13 @@ export function Dashboard() {
                       </div>
                     </div>
                     <span
-                      className={`text-sm font-semibold ${
+                      className={`text-sm font-semibold ₹{
                         isExpense
                           ? 'text-red-600 dark:text-red-400'
                           : 'text-green-600 dark:text-green-400'
                       }`}
                     >
-                      {isExpense ? '-' : '+'}${Number(transaction.amount).toFixed(2)}
+                      {isExpense ? '-' : '+'}₹{Number(transaction.amount).toFixed(2)}
                     </span>
                   </div>
                 );
@@ -362,7 +362,7 @@ export function Dashboard() {
               Active Subscriptions
             </h3>
             <span className="text-sm text-gray-500 dark:text-gray-400">
-              ${monthlySubscriptions.toFixed(2)}/mo
+              ₹{monthlySubscriptions.toFixed(2)}/mo
             </span>
           </div>
           {subscriptions.filter((s) => s.is_active).length > 0 ? (
@@ -384,7 +384,7 @@ export function Dashboard() {
                       </p>
                     </div>
                     <span className="text-sm font-semibold text-gray-900 dark:text-white">
-                      ${Number(sub.amount).toFixed(2)}
+                      ₹{Number(sub.amount).toFixed(2)}
                     </span>
                   </div>
                 ))}
@@ -416,12 +416,12 @@ export function Dashboard() {
                   <div className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2 mb-2">
                     <div
                       className="bg-teal-600 h-2 rounded-full transition-all"
-                      style={{ width: `${Math.min(progress, 100)}%` }}
+                      style={{ width: `₹{Math.min(progress, 100)}%` }}
                     />
                   </div>
                   <div className="flex justify-between text-xs text-gray-600 dark:text-gray-400">
-                    <span>${Number(goal.current_amount).toFixed(2)}</span>
-                    <span>${Number(goal.target_amount).toFixed(2)}</span>
+                    <span>₹{Number(goal.current_amount).toFixed(2)}</span>
+                    <span>₹{Number(goal.target_amount).toFixed(2)}</span>
                   </div>
                 </div>
               );

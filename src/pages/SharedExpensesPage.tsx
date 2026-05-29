@@ -175,7 +175,7 @@ export function SharedExpensesPage() {
             <span className="text-sm text-gray-600 dark:text-gray-400">You Owe</span>
           </div>
           <p className="text-2xl font-bold text-red-600 dark:text-red-400">
-            ${totalYouOwe.toFixed(2)}
+            ₹{totalYouOwe.toFixed(2)}
           </p>
         </div>
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
@@ -184,7 +184,7 @@ export function SharedExpensesPage() {
             <span className="text-sm text-gray-600 dark:text-gray-400">They Owe You</span>
           </div>
           <p className="text-2xl font-bold text-green-600 dark:text-green-400">
-            ${totalTheyOwe.toFixed(2)}
+            ₹{totalTheyOwe.toFixed(2)}
           </p>
         </div>
       </div>
@@ -272,7 +272,7 @@ export function SharedExpensesPage() {
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Total Amount</label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">₹</span>
                   <input
                     type="number"
                     step="0.01"
@@ -321,7 +321,7 @@ export function SharedExpensesPage() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Your Share</label>
                   <div className="relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">₹</span>
                     <input
                       type="number"
                       step="0.01"
@@ -335,7 +335,7 @@ export function SharedExpensesPage() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Their Share</label>
                   <div className="relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">₹</span>
                     <input
                       type="number"
                       step="0.01"
@@ -377,19 +377,19 @@ export function SharedExpensesPage() {
                   <div>
                     <p className="font-medium text-gray-900 dark:text-white">{roommate.name}</p>
                     <p className="text-sm text-gray-500 dark:text-gray-400">
-                      {roommate.room_number && `Room: ${roommate.room_number}`}
+                      {roommate.room_number && `Room: ₹{roommate.room_number}`}
                     </p>
                   </div>
                   <div className="text-right">
                     <p
-                      className={`text-sm font-semibold ${
+                      className={`text-sm font-semibold ₹{
                         roommate.net > 0 ? 'text-green-600' : roommate.net < 0 ? 'text-red-600' : 'text-gray-500'
                       }`}
                     >
                       {roommate.net > 0
-                        ? `owes you $${roommate.net.toFixed(2)}`
+                        ? `owes you ₹₹{roommate.net.toFixed(2)}`
                         : roommate.net < 0
-                        ? `you owe $${Math.abs(roommate.net).toFixed(2)}`
+                        ? `you owe ₹₹{Math.abs(roommate.net).toFixed(2)}`
                         : 'settled'}
                     </p>
                   </div>
@@ -424,10 +424,10 @@ export function SharedExpensesPage() {
                     <div className="flex items-center gap-3">
                       <div className="text-right">
                         <p className="font-semibold text-gray-900 dark:text-white">
-                          ${Number(expense.total_amount).toFixed(2)}
+                          ₹{Number(expense.total_amount).toFixed(2)}
                         </p>
                         <p className="text-xs text-gray-500">
-                          Your share: ${Number(expense.your_share).toFixed(2)}
+                          Your share: ₹{Number(expense.your_share).toFixed(2)}
                         </p>
                       </div>
                       {!expense.is_settled && (
