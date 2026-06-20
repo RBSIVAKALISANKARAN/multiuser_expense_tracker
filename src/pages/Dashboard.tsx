@@ -132,7 +132,9 @@ export function Dashboard() {
     });
   }
 
-  const balance = totalIncomeThisMonth - totalExpensesThisMonth;
+  const totalAllTimeExpenses = expenses.reduce((sum, e) => sum + Number(e.amount), 0);
+const totalAllTimeIncome = income.reduce((sum, i) => sum + Number(i.amount), 0);
+const availableBalance = totalAllTimeIncome - totalAllTimeExpenses;
   const recentTransactions = [...thisMonthExpenses.slice(0, 5), ...thisMonthIncome.slice(0, 3)]
     .sort((a, b) => {
       const dateA = new Date('expense_date' in a ? a.expense_date : a.income_date);
@@ -190,31 +192,31 @@ export function Dashboard() {
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-5">
           <div className="flex items-center justify-between mb-3">
             <div
-              className={`p-2 rounded-lg ₹{
-                balance >= 0
+              className={`p-2 rounded-lg ${
+                availableBalance >= 0
                   ? 'bg-green-100 dark:bg-green-900/30'
                   : 'bg-red-100 dark:bg-red-900/30'
               }`}
             >
-              {balance >= 0 ? (
+              {availableBalance >= 0 ? (
                 <ArrowUpRight className="w-5 h-5 text-green-600 dark:text-green-400" />
               ) : (
                 <ArrowDownRight className="w-5 h-5 text-red-600 dark:text-red-400" />
               )}
             </div>
-            <span className="text-xs text-gray-500 dark:text-gray-400">Net Balance</span>
+            <span className="text-xs text-gray-500 dark:text-gray-400">Available Balance</span>
           </div>
           <p
-            className={`text-2xl font-bold ₹{
-              balance >= 0
+            className={`text-2xl font-bold ${
+              availableBalance >= 0
                 ? 'text-green-600 dark:text-green-400'
                 : 'text-red-600 dark:text-red-400'
             }`}
           >
-            ₹{Math.abs(balance).toFixed(2)}
+            ₹{Math.abs(availableBalance).toFixed(2)}
           </p>
           <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-            {balance >= 0 ? 'Surplus' : 'Deficit'}
+            {availableBalance >= 0 ? 'Surplus (All Time)' : 'Deficit'}
           </p>
         </div>
 
@@ -268,13 +270,13 @@ export function Dashboard() {
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                  label={({ name, percent }) => `₹{name} (₹{(percent * 100).toFixed(0)}%)`}
+                  label={({ name, percent }) => `${name} (${((percent || 0) * 100).toFixed(0)}%)`}
                   outerRadius={100}
                   fill="#8884d8"
                   dataKey="value"
                 >
                   {pieData.map((_entry, index) => (
-                    <Cell key={`cell-₹{index}`} fill={COLORS[index % COLORS.length]} />
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
                 <Tooltip
@@ -311,7 +313,7 @@ export function Dashboard() {
                   >
                     <div className="flex items-center gap-3">
                       <div
-                        className={`w-10 h-10 rounded-full flex items-center justify-center ₹{
+                        className={`w-10 h-10 rounded-full flex items-center justify-center ${
                           isExpense
                             ? 'bg-teal-100 dark:bg-teal-900/30'
                             : 'bg-green-100 dark:bg-green-900/30'
@@ -337,7 +339,7 @@ export function Dashboard() {
                       </div>
                     </div>
                     <span
-                      className={`text-sm font-semibold ₹{
+                      className={`text-sm font-semibold ${
                         isExpense
                           ? 'text-red-600 dark:text-red-400'
                           : 'text-green-600 dark:text-green-400'
@@ -416,7 +418,7 @@ export function Dashboard() {
                   <div className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2 mb-2">
                     <div
                       className="bg-teal-600 h-2 rounded-full transition-all"
-                      style={{ width: `₹{Math.min(progress, 100)}%` }}
+                      style={{ width: `${Math.min(progress, 100)}%` }}
                     />
                   </div>
                   <div className="flex justify-between text-xs text-gray-600 dark:text-gray-400">
